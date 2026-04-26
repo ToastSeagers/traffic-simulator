@@ -1,0 +1,122 @@
+{
+  "nodes": [
+    {
+      "id": "node_0",
+      "lat": -33.99484730655592,
+      "lng": 18.472759723663334,
+      "name": "Intersection 0",
+      "type": "inflow_outflow",
+      "inflowRate": 30,
+      "phaseTimings": [
+        15,
+        15,
+        15,
+        15
+      ]
+    },
+    {
+      "id": "node_1",
+      "lat": -33.99481617353323,
+      "lng": 18.469004631042484,
+      "name": "Intersection 1",
+      "type": "traffic_light",
+      "inflowRate": 0,
+      "phaseTimings": [
+        5,
+        10,
+        15,
+        15
+      ]
+    },
+    {
+      "id": "node_2",
+      "lat": -33.99306381072109,
+      "lng": 18.46910119056702,
+      "name": "Intersection 2",
+      "type": "inflow_outflow",
+      "inflowRate": 30,
+      "phaseTimings": [
+        15,
+        15,
+        15,
+        15
+      ]
+    },
+    {
+      "id": "node_3",
+      "lat": -33.99653292032534,
+      "lng": 18.4686291217804,
+      "name": "Intersection 3",
+      "type": "inflow_outflow",
+      "inflowRate": 60,
+      "phaseTimings": [
+        15,
+        15,
+        15,
+        15
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge_0",
+      "startNodeId": "node_0",
+      "endNodeId": "node_1",
+      "speedLimit": 60,
+      "controlPoints": [],
+      "pairedEdgeId": "edge_6"
+    },
+    {
+      "id": "edge_1",
+      "startNodeId": "node_1",
+      "endNodeId": "node_2",
+      "speedLimit": 60,
+      "controlPoints": [
+        {
+          "lat": -33.99397335379851,
+          "lng": 18.469154834747318
+        }
+      ],
+      "pairedEdgeId": "edge_7"
+    },
+    {
+      "id": "edge_3",
+      "startNodeId": "node_1",
+      "endNodeId": "node_3",
+      "speedLimit": 60,
+      "controlPoints": [],
+      "pairedEdgeId": "edge_5"
+    },
+    {
+      "id": "edge_5",
+      "startNodeId": "node_3",
+      "endNodeId": "node_1",
+      "speedLimit": 60,
+      "controlPoints": [],
+      "pairedEdgeId": "edge_3"
+    },
+    {
+      "id": "edge_6",
+      "startNodeId": "node_1",
+      "endNodeId": "node_0",
+      "speedLimit": 60,
+      "controlPoints": [],
+      "pairedEdgeId": "edge_0"
+    },
+    {
+      "id": "edge_7",
+      "startNodeId": "node_2",
+      "endNodeId": "node_1",
+      "speedLimit": 60,
+      "controlPoints": [
+        {
+          "lat": -33.99397335379851,
+          "lng": 18.469154834747318
+        }
+      ],
+      "pairedEdgeId": "edge_1"
+    }
+  ],
+  "nodeCounter": 5,
+  "edgeCounter": 8
+}

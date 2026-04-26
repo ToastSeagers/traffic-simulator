@@ -1,0 +1,291 @@
+:root {
+    --bg-colour: #121212;
+    --panel-bg: #1e1e1e;
+    --text-colour: #e0e0e0;
+    --accent-colour: #4CAF50;
+    --accent-hover: #45a049;
+    --border-colour: #333;
+    
+    --font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-colour);
+    color: var(--text-colour);
+    overflow: hidden; /* Prevent scrolling, app is full screen */
+}
+
+#app {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* UI Panel */
+.panel {
+    width: 350px;
+    background-color: var(--panel-bg);
+    border-right: 1px solid var(--border-colour);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000; /* Keep above map */
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+}
+
+header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border-colour);
+}
+
+header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+section {
+    padding: 20px;
+    border-bottom: 1px solid var(--border-colour);
+}
+
+h2 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: var(--accent-colour);
+}
+
+h3 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    color: #aaa;
+}
+
+/* Controls & Buttons */
+.mode-toggle {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    background-color: #333;
+    color: var(--text-colour);
+    border: 1px solid var(--border-colour);
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    flex: 1;
+}
+
+button:hover {
+    background-color: #444;
+}
+
+button.active {
+    background-color: var(--accent-colour);
+    color: #fff;
+    border-color: var(--accent-colour);
+}
+
+.sim-actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Input Fields */
+label {
+    display: block;
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+    color: #ccc;
+}
+
+input[type="number"] {
+    width: 100%;
+    background-color: #2a2a2a;
+    border: 1px solid var(--border-colour);
+    color: var(--text-colour);
+    padding: 8px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-family: var(--font-family);
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus,
+select.dropdown-input:focus {
+    outline: none;
+    border-color: var(--accent-colour);
+}
+
+input[type="text"],
+select.dropdown-input {
+    width: 100%;
+    background-color: #2a2a2a;
+    border: 1px solid var(--border-colour);
+    color: var(--text-colour);
+    padding: 8px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-family: var(--font-family);
+}
+
+.btn-danger {
+    width: 100%;
+    background-color: #f44336;
+    border-color: #f44336;
+    color: white;
+}
+.btn-danger:hover {
+    background-color: #d32f2f;
+}
+
+#btn-update-edge {
+    width: 100%;
+    background-color: var(--accent-colour);
+    border-color: var(--accent-colour);
+    color: white;
+}
+#btn-update-edge:hover {
+    background-color: var(--accent-hover);
+}
+
+/* Utilities */
+.hidden {
+    display: none !important;
+}
+
+/* Dashboard */
+.dashboard {
+    background-color: #2a2a2a;
+    padding: 15px;
+    border-radius: 6px;
+}
+
+.metric {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.metric span:last-child {
+    font-weight: bold;
+    color: var(--accent-colour);
+}
+
+/* Map & Canvas Area */
+#map-container {
+    flex: 1;
+    position: relative;
+}
+
+#leaflet-map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+#simulation-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2; /* On top of Leaflet */
+    pointer-events: none; /* Let Leaflet handle panning/zooming */
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.hidden {
+    display: none !important;
+}
+
+.modal-content {
+    background-color: var(--panel-bg);
+    padding: 30px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    border: 1px solid var(--border-colour);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #aaa;
+}
+
+.close-button:hover {
+    color: #fff;
+}
+
+.markdown-body h1, .markdown-body h2, .markdown-body h3 {
+    color: var(--accent-colour);
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.markdown-body p {
+    margin-bottom: 15px;
+    color: #ddd;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.markdown-body ul, .markdown-body ol {
+    margin-bottom: 15px;
+    padding-left: 20px;
+    color: #ddd;
+}
+
+.markdown-body li {
+    margin-bottom: 5px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.markdown-body hr {
+    border: 0;
+    border-top: 1px solid var(--border-colour);
+    margin: 20px 0;
+}

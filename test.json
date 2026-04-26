@@ -1,0 +1,44 @@
+{
+  "nodes": [
+    {
+      "id": "node_0",
+      "lat": -33.99406008233653,
+      "lng": 18.46962690353394,
+      "name": "Intersection 0",
+      "type": "inflow_outflow",
+      "inflowRate": 60,
+      "phaseTimings": [
+        15,
+        15,
+        15,
+        15
+      ]
+    },
+    {
+      "id": "node_1",
+      "lat": -33.994291358005114,
+      "lng": 18.47587108612061,
+      "name": "Intersection 1",
+      "type": "none",
+      "inflowRate": 0,
+      "phaseTimings": [
+        15,
+        15,
+        15,
+        15
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge_0",
+      "startNodeId": "node_0",
+      "endNodeId": "node_1",
+      "speedLimit": 60,
+      "controlPoints": [],
+      "pairedEdgeId": null
+    }
+  ],
+  "nodeCounter": 2,
+  "edgeCounter": 1
+}

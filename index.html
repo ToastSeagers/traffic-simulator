@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Simulator</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Control Panel UI -->
+        <aside id="ui-panel" class="panel">
+            <header>
+                <h1>Traffic Simulator</h1>
+            </header>
+            
+            <section class="controls">
+                <div class="mode-toggle">
+                    <button id="btn-edit-mode" class="active">Edit Mode</button>
+                    <button id="btn-sim-mode">Simulation Mode</button>
+                </div>
+                <div class="file-actions" style="margin-top: 10px; display: flex; gap: 10px;">
+                    <button id="btn-export">Export Map</button>
+                    <button id="btn-import-trigger">Import Map</button>
+                    <input type="file" id="file-import" accept=".json" class="hidden">
+                </div>
+                <div style="margin-top: 10px; display: flex;">
+                    <button id="btn-readme" style="background-color: #2196F3; border-color: #2196F3;">Read Me / Help</button>
+                </div>
+            </section>
+
+            <section id="edit-tools" class="tools-section active">
+                <h2>Edit Tools</h2>
+                <div class="sub-mode-toggle" style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <button id="btn-tool-select" class="active">Select</button>
+                    <button id="btn-tool-draw">Draw Road</button>
+                </div>
+                <p id="tool-instruction">Select nodes or roads to edit their properties.</p>
+                
+                <div class="selection-info" id="selection-info">
+                    <h3>Selection</h3>
+                    <p id="selection-details">None</p>
+                    <div id="node-controls" class="hidden">
+                        <label for="node-name">Name:</label>
+                        <input type="text" id="node-name" value="">
+                        <label for="node-type">Type:</label>
+                        <select id="node-type" class="dropdown-input">
+                            <option value="none">None</option>
+                            <option value="traffic_light">Traffic Light</option>
+                            <option value="stop_sign">4-Way Stop</option>
+                            <option value="inflow_outflow">Spawn/Exit Point</option>
+                        </select>
+                        <div id="node-inflow-container" class="hidden">
+                            <label for="node-inflow-rate">Inflow (veh/min):</label>
+                            <input type="number" id="node-inflow-rate" min="0" max="100" value="0">
+                        </div>
+                        <div id="node-phases-container" class="hidden">
+                            <!-- Dynamic phase inputs will be injected here -->
+                        </div>
+                        <button id="btn-update-node" style="margin-bottom: 10px;">Update Node</button>
+                        <button id="btn-delete-node" class="btn-danger">Delete Node</button>
+                    </div>
+                    <div id="edge-controls" class="hidden">
+                        <label for="speed-limit">Speed Limit (km/h):</label>
+                        <input type="number" id="speed-limit" min="10" max="120" value="60">
+                        <label for="edge-direction">Direction:</label>
+                        <select id="edge-direction" class="dropdown-input">
+                            <option value="one-way">One-Way</option>
+                            <option value="two-way">Two-Way</option>
+                        </select>
+                        <button id="btn-update-edge">Update Road</button>
+                        <button id="btn-delete-edge" class="btn-danger" style="margin-top:10px;">Delete Road</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sim-tools" class="tools-section hidden">
+                <h2>Simulation Controls</h2>
+                <div class="sim-actions">
+                    <button id="btn-start">Start</button>
+                    <button id="btn-pause">Pause</button>
+                    <button id="btn-reset">Reset</button>
+                </div>
+                <div class="dashboard">
+                    <h3>Dashboard</h3>
+                    <div class="metric">
+                        <span>Active Vehicles:</span>
+                        <span id="metric-vehicles">0</span>
+                    </div>
+                    <div class="metric">
+                        <span>System Inflow:</span>
+                        <span id="metric-inflow">0 veh/min</span>
+                    </div>
+                    <div class="metric">
+                        <span>System Outflow:</span>
+                        <span id="metric-outflow">0 veh/min</span>
+                    </div>
+                    <div class="metric">
+                        <span>Avg Journey:</span>
+                        <span id="metric-journey">0s</span>
+                    </div>
+                    <div class="metric">
+                        <span>Bottleneck:</span>
+                        <span id="metric-bottleneck" style="text-align: right; max-width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">None</span>
+                    </div>
+                </div>
+            </section>
+        </aside>
+
+        <!-- Map & Canvas Container -->
+        <main id="map-container">
+            <div id="leaflet-map"></div>
+            <!-- Canvas is placed perfectly on top of the Leaflet map and does not catch pointer events by default unless needed -->
+            <canvas id="simulation-canvas"></canvas>
+        </main>
+    </div>
+
+    <!-- Modal -->
+    <div id="readme-modal" class="modal hidden">
+        <div class="modal-content">
+            <span id="btn-close-modal" class="close-button">&times;</span>
+            <div id="readme-content" class="markdown-body">
+                Loading...
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
+    <!-- App Entry -->
+    <script type="module" src="/src/engine.js"></script>
+</body>
+</html>
