@@ -53,3 +53,16 @@ This tool is intended to test infrastructure changes and present data-backed pro
 - **Object Pooling:** Implement a vehicle object pool to reuse memory and avoid garbage collection stutters when the simulation scales to thousands of vehicles.
 - **Lane Mechanics:** Extend the edge model to support multiple lanes, lane-changing logic, and turn-specific lanes at intersections.
 - **Advanced Metrics:** Improve the collection of traffic flow data to accurately identify bottlenecks, measure queue clearance times at intersections, and track lane-specific density.
+
+---
+
+## Development Commands
+
+All commands are run from the project root. Requires Node.js and npm.
+
+1. **Install dependencies:** `npm install`
+2. **Run locally (dev server with hot reload):** `npm run dev`
+3. **Build for production (outputs to `dist/`):** `npm run build`
+4. **Preview the production build locally:** `npm run preview`
+
+> **Note:** Static files like `README.md` are served from the `public/` folder — Vite copies its contents into `dist/` during the build step.

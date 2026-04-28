@@ -498,6 +498,7 @@ export class UIManager {
                     .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
                     .replace(/\*(.*?)\*/gim, '<em>$1</em>')
                     .replace(/`(.*?)`/gim, '<code style="background:#333;padding:2px 4px;border-radius:3px;color:#eee;">$1</code>')
+                    .replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/gim, '<a href="$2" target="_blank" rel="noopener">$1</a>')
                     .replace(/^---/gim, '<hr>')
                     .replace(/\n\n/gim, '<p></p>');
                 this.readmeContent.innerHTML = html;
